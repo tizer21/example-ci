@@ -13,11 +13,14 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: change dir
+      run: cd test/
+
     - name: configure
-      run: cmake -B ${{github.workspace}}/test/build
+      run: cmake -B ${{github.workspace}}/build
       
     - name: build
-      run: cmake --build ${{github.workspace}}/test/build
+      run: cmake --build ${{github.workspace}}/build
 
     - name: run
-      run: ${{github.workspace}}/test/build/test
+      run: ${{github.workspace}}/build/test
