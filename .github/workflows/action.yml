@@ -1,0 +1,23 @@
+name: action
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: configure
+      run: cmake -B ${{github.workspace}}/test/build
+      
+    - name: build
+      run: cmake --build ${{github.workspace}}/test/build
+
+    - name: run
+      run: ${{github.workspace}}/test/build/test
